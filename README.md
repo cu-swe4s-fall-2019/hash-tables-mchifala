@@ -115,26 +115,17 @@ I ran a total of 12 experiments. For both the insert and search methods, I teste
 
 In general, the best performing hashing algorithm - collision resolution strategy combination was the rolling polynomial hashing method and chaining. This combination performed well at a high load factor, which can be seen in the plots below. 
 
-#### Linear Probing
-![](/insert_graphs/h_rolling_chaining.png)
-![](/search_graphs/h_rolling_chaining.png)
-
-
-#### Chaining
+#### Rolling Polynomial Hashing Method and Chaining
 ![](/insert_graphs/h_rolling_chaining.png)
 ![](/search_graphs/h_rolling_chaining.png)
 
 
 The worst performing combination was the ascii hashing method and linear probing. This combination performed poorly at a high load factor, which can be seen in the plots below. 
 
-#### Linear Probing
+#### ascii Hashing Method and Linear Probing
 ![](/insert_graphs/h_ascii_linear_probing.png)
 ![](/search_graphs/h_ascii_linear_probing.png)
 
-
-#### Chaining
-![](/insert_graphs/h_ascii_linear_probing.png)
-![](/search_graphs/h_ascii_linear_probing.png)
 
 ## Authors
 
