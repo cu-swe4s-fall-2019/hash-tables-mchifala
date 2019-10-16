@@ -1,5 +1,5 @@
-# Time Series Basics
-V1.0: The goal of this assignment is to implement some basic hash functions and collision resolution strategies. 
+# Hash Tables
+V1.0: The goal of this assignment is to implement some basic hash functions and collision resolution strategies.
 
 ## Getting Started
 
@@ -80,7 +80,7 @@ This class is used to represent a hash table that uses linear probing as a colli
     Methods:
     - add(self, key, value): This function adds a key-value pair to the hash table
     - search(self, key): This function searchs for a key in the hash table
-    
+
 #### ChainedHash
 This class is used to represent a hash table that uses chaining as a collision strategy
 
@@ -111,16 +111,16 @@ python test_hash.py
 ```
 
 ### Experiments
-I ran a total of 12 experiments. For both the insert and search methods, I tested both linear probing and chaining collision resolutions for each of my three hashing algrorithms (h_ascii, h_rolling, and h_mult). Scatter plots are available for all 12 experiments in the "/search_graphs" and "/insert_graphs" directories. 
+I ran a total of 12 experiments. For both the insert and search methods, I tested both linear probing and chaining collision resolutions for each of my three hashing algrorithms (h_ascii, h_rolling, and h_mult). Scatter plots are available for all 12 experiments in the "/search_graphs" and "/insert_graphs" directories.
 
-In general, the best performing hashing algorithm - collision resolution strategy combination was the rolling polynomial hashing method and chaining. This combination performed well at a high load factor, which can be seen in the plots below. 
+In general, the best performing hashing algorithm - collision resolution strategy combination was the rolling polynomial hashing method and chaining. This combination performed well at a high load factor, which can be seen in the plots below.
 
 #### Rolling Polynomial Hashing Method and Chaining
 ![](/insert_graphs/h_rolling_chaining.png)
 ![](/search_graphs/h_rolling_chaining.png)
 
 
-The worst performing combination was the ascii hashing method and linear probing. This combination performed poorly at a high load factor, which can be seen in the plots below. 
+The worst performing combination was the ascii hashing method and linear probing. This combination performed poorly at a high load factor, which can be seen in the plots below.
 
 #### ascii Hashing Method and Linear Probing
 ![](/insert_graphs/h_ascii_linear_probing.png)
