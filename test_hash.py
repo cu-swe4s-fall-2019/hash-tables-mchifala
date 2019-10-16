@@ -5,9 +5,12 @@ import numpy as np
 import sys
 from hash_functions import h_ascii
 from hash_functions import h_rolling
+from hash_functions import h_mult
 from hash_tables import LinearProbe
 from hash_tables import ChainedHash
 import string
+from math import sqrt
+from math import floor
 
 
 class TestHash(unittest.TestCase):
@@ -24,6 +27,21 @@ class TestHash(unittest.TestCase):
         for char in self.random_string:
             self.sum += self.asciiDict[char]
         return self.random_string, self.sum % n
+    
+    def make_random_mult_hash(self, n):
+        """
+        This helper function 
+
+        """
+        self.A = (sqrt(5)-1)/2
+        self.asciiDict = {chr(i): i for i in range(129)} 
+        self.random_string = ''.join(random.choices(string.ascii_letters, k=10))
+        self.sum = 0
+        for char in self.random_string:
+            self.sum += self.asciiDict[char]
+            
+        return self.random_string, floor(self.n*((self.sum*self.A)%1))
+    
 
     def make_random_rolling_hash(self, n):
         """
@@ -68,6 +86,23 @@ class TestHash(unittest.TestCase):
         self.random_string = ''.join(random.choices(string.ascii_letters, k=10))    
         self.assertRaises(ZeroDivisionError and SystemExit, 
                           h_ascii, self.random_string, self.n)
+        
+    def test_mult_hash_empty(self):
+        """
+        This test checks h_ascii function on an empty string
+
+        """
+        self.n = 10
+        self.assertEqual(0, h_mult("", self.n))
+
+    def test_mult_hash(self):
+        """
+        This test checks h_ascii function on a random string of length 10
+
+        """
+        self.n = 10
+        self.random_string, self.hash_value = self.make_random_mult_hash(self.n)
+        self.assertEqual(self.hash_value, h_mult(self.random_string, self.n))
 
     def test_rolling_hash_empty(self):
         """
@@ -183,20 +218,17 @@ class TestHash(unittest.TestCase):
     def test_hash_chain_search_full(self):
         """
         This test checks LinearProbe search function on a full table
-        where the key exists
-
+        with multiple elementes in each linked list
         """
         self.n = 10
         self.inst_table = ChainedHash(self.n, h_ascii)
         self.inst_table.table = [[(chr(x), x), 
                                    (chr(x+self.n), x+self.n)] for x in range(self.n)]
-        #print(self.inst_table.table)
-
         self.assertEqual(5, self.inst_table.search(chr(5)))
 
     def test_hash_chain_search_empty(self):
         """
-        This test checks LinearProbe search function on a full table
+        This test checks LinearProbe search function on an empty table
         where the key exists
 
         """
