@@ -114,7 +114,8 @@ class ChainedHash:
         """
         hash_slot = self.hash_function(key, self.n)
         self.table[hash_slot].append((key, value))
-        self.keys.append(key)
+        if key not in self.keys:
+            self.keys.append(key)
         self.m += 1
         return True
 
