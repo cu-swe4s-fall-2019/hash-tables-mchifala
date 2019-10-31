@@ -24,6 +24,7 @@ class LinearProbe:
         self.n = n
         self.table = [None for i in range(n)]
         self.m = 0
+        self.keys = []
 
     def add(self, key, value):
         """
@@ -43,6 +44,7 @@ class LinearProbe:
             test_slot = (start_hash + i) % self.n
             if self.table[test_slot] is None:
                 self.table[test_slot] = (key, value)
+                self.keys.append(key)
                 self.m += 1
                 return True
 
