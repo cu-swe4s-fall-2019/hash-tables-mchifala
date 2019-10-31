@@ -98,6 +98,7 @@ class ChainedHash:
         self.n = n
         self.table = [[] for i in range(n)]
         self.m = 0
+        self.keys = []
 
     def add(self, key, value):
         """
@@ -113,6 +114,7 @@ class ChainedHash:
         """
         hash_slot = self.hash_function(key, self.n)
         self.table[hash_slot].append((key, value))
+        self.keys.append(key)
         self.m += 1
         return True
 
