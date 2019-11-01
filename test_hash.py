@@ -228,7 +228,7 @@ class TestHash(unittest.TestCase):
                                   (chr(x+self.n),
                                    x+self.n)] for x in range(self.n)]
 
-        self.assertEqual(5, self.inst_table.search(chr(5)))
+        self.assertEqual(5, self.inst_table.search(chr(5))[0])
 
     def test_hash_chain_search_empty(self):
         """
@@ -254,6 +254,27 @@ class TestHash(unittest.TestCase):
         scatter_plot(self.x_data, self.y_data, self.x_label, self.y_label,
                      self.title, self.outfile)
         self.assertEqual(True, os.path.exists(self.outfile))
+
+    def test_keys_exist(self):
+        """
+        This test checks to see if keys are tracked in the keys list
+
+        """
+        self.n = 10
+        self.key = "TEST"
+        self.value = 1
+        self.inst_table = ChainedHash(self.n, h_ascii)
+        self.inst_table.add(self.key, self.value)
+        self.assertEqual(self.key, self.inst_table.keys[0])
+
+    def test_keys_not_exist(self):
+        """
+        This test checks to see if keys list is empty when initialized
+
+        """
+        self.n = 10
+        self.inst_table = ChainedHash(self.n, h_ascii)
+        self.assertEqual([], self.inst_table.keys)
 
 
 if __name__ == '__main__':
