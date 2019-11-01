@@ -135,7 +135,7 @@ class ChainedHash:
         for data in self.table[hash_slot]:
             if data[0] == key:
                 return_list.append(data[1])
-                
+
         if return_list:
             return return_list
         else:
