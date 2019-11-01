@@ -130,9 +130,13 @@ class ChainedHash:
         - The value of the desired key or None
 
         """
+        return_list = []
         hash_slot = self.hash_function(key, self.n)
         for data in self.table[hash_slot]:
             if data[0] == key:
-                return data[1]
+                return_list.append(data[1])
 
-        return None
+        if return_list:
+            return return_list
+        else:
+            return None
